@@ -37,6 +37,23 @@ jobs:
           # the commits between this tag and the previous one.
           fetch-depth: 0
 
+      # The TOC carries a literal version rather than @project-version@, so it
+      # can drift from the tag being released. Catch that here, before the
+      # packager uploads a zip whose in-game version is wrong.
+      - name: Verify tag matches TOC version
+        run: |
+          toc_version=$(sed -n 's/^## Version:[[:space:]]*//p' HelloRangeDisplay.toc | tr -d '[:space:]')
+          tag_version="${GITHUB_REF_NAME#v}"
+          if [ -z "$toc_version" ]; then
+            echo "::error::No '## Version:' header found in HelloRangeDisplay.toc"
+            exit 1
+          fi
+          if [ "$toc_version" != "$tag_version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME expects version $tag_version, but HelloRangeDisplay.toc says $toc_version — bump the TOC to match and retag."
+            exit 1
+          fi
+          echo "TOC version $toc_version matches tag $GITHUB_REF_NAME."
+
       - name: Package and release
         uses: BigWigsMods/packager@v2
         env:

@@ -2,7 +2,7 @@
 ## Title: HelloRangeDisplay
 ## Notes: See how far away your target is, in colours that mean something for your class.
 ## Author: Drikk
-## Version: @project-version@
+## Version: 0.1.0
 ## SavedVariables: HelloRangeDisplayDB
 ## IconTexture: Interface\AddOns\HelloRangeDisplay\Icon.png
 ## Category: Combat
