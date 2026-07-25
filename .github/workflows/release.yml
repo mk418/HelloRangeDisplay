@@ -1,0 +1,44 @@
+# Release workflow — fires when you push a tag matching v* (e.g. v0.1.0).
+# Builds the addon zip via BigWigs Packager (which reads .pkgmeta), then:
+#   - Uploads to CurseForge if CF_API_KEY is set in repo secrets and the
+#     TOC has an X-Curse-Project-ID header.
+#   - Creates a GitHub Release with the zip(s) attached, using the
+#     auto-provided GITHUB_TOKEN — no setup needed.
+#
+# Until CF_API_KEY + X-Curse-Project-ID are in place, the CurseForge
+# upload step is silently skipped; the GitHub Release still happens.
+#
+# To publish a new version:
+#   1. Bump `## Version:` in HelloRangeDisplay.toc
+#   2. git commit + push
+#   3. git tag v0.1.0 && git push origin v0.1.0
+# The workflow will fire on the tag push, not on the version bump.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+# Required for the packager to create a GitHub Release.
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so the packager can generate a changelog from
+          # the commits between this tag and the previous one.
+          fetch-depth: 0
+
+      - name: Package and release
+        uses: BigWigsMods/packager@v2
+        env:
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}

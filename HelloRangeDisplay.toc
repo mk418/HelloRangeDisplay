@@ -1,0 +1,13 @@
+## Interface: 11509
+## Title: HelloRangeDisplay
+## Notes: Estimated range to your target or mouseover.
+## Author: Drikk
+## Version: @project-version@
+## SavedVariables: HelloRangeDisplayDB
+## X-License: MIT
+
+Ranges.lua
+RangeCheck.lua
+Core.lua
+Display.lua
+Options.lua

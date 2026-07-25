@@ -1,0 +1,19 @@
+# BigWigs packager config. Used by the release-builder GitHub Action.
+
+package-as: HelloRangeDisplay
+
+# Files that should NOT end up in the released zip. The packager
+# already excludes hidden files by default, but listing key items
+# explicitly avoids surprises.
+ignore:
+    - .gitignore
+    - .luacheckrc
+    - .pkgmeta
+    - .github
+    - DESIGN.md
+    - README.md
+    - LICENSE
+    - Tests.lua
+
+# No `manual-changelog` block: the packager auto-generates the
+# changelog from git commit messages between tags.
