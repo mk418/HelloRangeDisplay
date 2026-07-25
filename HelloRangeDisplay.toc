@@ -5,6 +5,7 @@
 ## Version: @project-version@
 ## SavedVariables: HelloRangeDisplayDB
 ## X-License: MIT
+## X-Curse-Project-ID: 1624157
 
 Ranges.lua
 RangeCheck.lua

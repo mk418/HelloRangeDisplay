@@ -417,5 +417,8 @@ live dump, which is why scenario 7 stubs the modern call returning zeros.
 - Mage and Shaman gladiator gloves modify spell ranges on later expansions, which
   is why LibRangeCheck watches `UNIT_INVENTORY_CHANGED` for those classes. No Era
   item does this, so the event isn't registered.
-- No CurseForge project ID yet, so `.github/workflows/release.yml` will publish a
-  GitHub Release but skip the CurseForge upload.
+- The CurseForge upload still no-ops until a `CF_API_KEY` repo secret exists.
+  `X-Curse-Project-ID` is in the TOC (1624157), which is the half the packager
+  reads from here; the key is the half it reads from the repo. The GitHub Release
+  half of the workflow works either way, so a missing key looks like a successful
+  run rather than a failed upload.
