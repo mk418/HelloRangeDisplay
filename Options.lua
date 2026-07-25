@@ -11,7 +11,7 @@ local subtitle = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall"
 subtitle:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
 subtitle:SetWidth(560)
 subtitle:SetJustifyH("LEFT")
-subtitle:SetText("Estimated range to your target, from the range checks your character can actually perform.")
+subtitle:SetText("See how far away your target is, in colours that mean something for your class.")
 
 -- Every control writes straight into the settings table and re-applies, so there
 -- is no apply/cancel state to keep in sync.

@@ -1,6 +1,6 @@
 ## Interface: 11509
 ## Title: HelloRangeDisplay
-## Notes: Estimated range to your target or mouseover.
+## Notes: See how far away your target is, in colours that mean something for your class.
 ## Author: Drikk
 ## Version: @project-version@
 ## SavedVariables: HelloRangeDisplayDB
